@@ -55,6 +55,11 @@ namespace Pizzeria.Controllers
                 }
                 return RedirectToAction("Index");
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
+        }
     }
 
 }

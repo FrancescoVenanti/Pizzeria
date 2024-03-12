@@ -124,5 +124,19 @@ namespace Pizzeria.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult AddToCart(int id)
+        {
+            var prodotto = db.Prodotti.Find(id);
+            if (prodotto != null)
+            {
+                var cart = Session["cart"] as List<Prodotti> ?? new List<Prodotti>();
+                cart.Add(prodotto);
+                Session["cart"] = cart;
+                TempData["CreateMess"] = "Prodotto aggiunto al carrello";
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }
