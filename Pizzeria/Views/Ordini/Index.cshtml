@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Pizzeria.Models.Ordini>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="p-3 bgCard rounded-3">
+    <h2>Lista ordini</h2>
+
+    <table class="table bg-white border border-secondary rounded-2">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Utenti.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Totale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isEvaso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOrdine)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Utenti.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indirizzo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Totale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isEvaso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataOrdine)
+                </td>
+                <td>
+                    @Html.ActionLink("Invia ordine", "isEvaso", new { id = item.idOrdine }, new { @class = "btn btn-success" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

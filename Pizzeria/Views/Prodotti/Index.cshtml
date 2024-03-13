@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Pizzeria.Models.Prodotti>
 
 @{
-    ViewBag.Title = "Index";
+        ViewBag.Title = "Index";
+        
 }
 
 <h2 class="display-2 myHeading text-white fw-bold">Le nostre <span class="text-danger">pizze</span></h2>
@@ -19,24 +20,36 @@
         <div class="col-12 col-md-4">
             <div class="card h-100 rounded-5 bgCard bbOrange overflow-hidden">
                 <img src="./Content/img/@Html.DisplayFor(modelItem => item.Foto)" class="card-img-top rounded-circle p-3 mh-100 cardImg" alt="@Html.DisplayFor(modelItem => item.Nome)">
-                <div class="card-body text-center bgSubtle negativeMargin">
-                    <h5 class="card-title fs-4">@Html.DisplayFor(modelItem => item.Nome)</h5>
-                    <p class="card-text overflow-hidden fs-5 ingredients">@Html.DisplayFor(modelItem => item.Ingredienti)</p>
-                    <p class="card-text fs-5">$ @Html.DisplayFor(modelItem => item.Prezzo)</p>
-                </div>
+                @using (Html.BeginForm("AddToCart", "Prodotti", FormMethod.Post))
+                {
+                    <div class="card-body text-center bgSubtle negativeMargin">
+                        <h5 class="card-title fs-4">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                        <p class="card-text overflow-hidden fs-5 ingredients">@Html.DisplayFor(modelItem => item.Ingredienti)</p>
+                        <p class="card-text fs-5">$ @Html.DisplayFor(modelItem => item.Prezzo)</p>
+                        <input type="hidden" name="id" value="@item.idProdotto" />
+                        
+                            <label for="quantita" class="fs-5">Quantit&agrave;:</label>
+                        <input type="number" name="quantita" id="quantita" value="1" min="1" max="30">
 
-                @if (User.IsInRole("Admin"))
-                {
-                    <div class="d-flex justify-content-around mb-3 ">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.idProdotto }, new { @class = "btn btn-warning index2000" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.idProdotto }, new { @class = "btn btn-danger index2000" })
+
                     </div>
-                }
-                else
-                {
-                    <div class="d-flex justify-content-center mb-2">
-                        @Html.ActionLink(" ", "AddToCart", "Prodotti", new { id = item.idProdotto }, new { @class = "btn btn-danger fs-3 rounded-circle position-absolute top-50 end-0 translate-x-50 bi bi-cart-plus-fill me-2 border border-5 border-white" })
-                    </div>
+
+                    if (User.IsInRole("Admin"))
+                    {
+                        <div class="d-flex justify-content-around mb-3 ">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idProdotto }, new { @class = "btn btn-warning index2000" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idProdotto }, new { @class = "btn btn-danger index2000" })
+                        </div>
+                    }
+                    else
+                    {
+            <div class="d-flex justify-content-center mb-2">
+                @* TODO icona *@
+                <input type="submit" value="🛒" class="btn btn-danger fs-2 rounded-circle position-absolute top-50 end-0 translate-x-50 me-2 border border-5 border-white" />
+                
+                @*@Html.ActionLink(" ", "AddToCart", "Prodotti", new { id = item.idProdotto }, new { @class = "btn btn-danger fs-3 rounded-circle position-absolute top-50 end-0 translate-x-50 bi bi-cart-plus-fill me-2 border border-5 border-white" })*@
+            </div>
+                    }
                 }
             </div>
         </div>

@@ -36,7 +36,14 @@ namespace Pizzeria.Controllers
                 var productToRemove = cart.FirstOrDefault(p => p.idProdotto == id);
                 if (productToRemove != null)
                 {
-                    cart.Remove(productToRemove);
+                    if (productToRemove.quantita > 1)
+                    {
+                        productToRemove.quantita--;
+                    }
+                    else
+                    {
+                        cart.Remove(productToRemove);
+                    }
                 }
             }
 
@@ -78,7 +85,7 @@ namespace Pizzeria.Controllers
                     Dettagli newDetail = new Dettagli();
                     newDetail.idOrdine_FK = newOrder.idOrdine;
                     newDetail.idProdotto_FK = product.idProdotto;
-                    newDetail.Quantita = 1;
+                    newDetail.Quantita = Convert.ToInt32(product.quantita);
 
                     // Save the order detail to the database
                     db.Dettagli.Add(newDetail);
