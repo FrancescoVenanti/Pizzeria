@@ -32,6 +32,8 @@ namespace Pizzeria.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string Psw { get; set; }
 
         public bool isAdmin { get; set; }

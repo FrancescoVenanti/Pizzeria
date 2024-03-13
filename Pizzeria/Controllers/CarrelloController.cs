@@ -72,6 +72,19 @@ namespace Pizzeria.Controllers
                 db.Ordini.Add(newOrder);
                 db.SaveChanges();
 
+                // Create a new order detail for each product in the cart
+                foreach (var product in cart)
+                {
+                    Dettagli newDetail = new Dettagli();
+                    newDetail.idOrdine_FK = newOrder.idOrdine;
+                    newDetail.idProdotto_FK = product.idProdotto;
+                    newDetail.Quantita = 1;
+
+                    // Save the order detail to the database
+                    db.Dettagli.Add(newDetail);
+                    db.SaveChanges();
+                }
+
                 // Clear the cart
                 cart.Clear();
             }
