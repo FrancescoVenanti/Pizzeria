@@ -15,7 +15,7 @@ select,
 textarea {
 }
 body {
-    background: url('/Content/img/bg-pizzeria.jpg') repeat center center;
+    background: url('/Content/img/pizzabg.jpg') no-repeat center center fixed;
     /*background: url('/Content/img/pizzaPattern.jpg') repeat center center;*/
     font-family: 'Kalam', cursive;
 }
@@ -78,8 +78,16 @@ z-index: 1000;
     text-overflow: ellipsis;
 }
 
-.index2000{
+.index2000 {
+    z-index: 2001;
+}
+
+.buyBtn {
     z-index: 2000;
+    position: absolute;
+    top:40%;
+    left:85%;
+    transform: translate(-50%, 0%);
 }
 
 /*.hoverCard {

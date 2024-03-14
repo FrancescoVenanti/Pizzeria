@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdiniController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
+    <Compile Include="Controllers\UtentiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,7 @@
     <Content Include="Content\img\margherita.jpg" />
     <Content Include="Content\img\marinara.jpg" />
     <Content Include="Content\img\napoli.jpg" />
+    <Content Include="Content\img\pizzabg.jpg" />
     <Content Include="Content\img\pizzaPattern.jpg" />
     <Content Include="Content\img\pizza_car1.jpg" />
     <Content Include="Content\img\pizza_car2.jpg" />
@@ -267,6 +269,9 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Carrello\Index.cshtml" />
     <Content Include="Views\Ordini\Index.cshtml" />
+    <Content Include="Views\Ordini\_Details.cshtml" />
+    <Content Include="Views\Ordini\OrdiniUtente.cshtml" />
+    <Content Include="Views\Utenti\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
