@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,15 +48,33 @@ namespace Pizzeria.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProdotto,Nome,Foto,foto2,foto3,Prezzo,Consegna,Ingredienti")] Prodotti prodotti)
+        public ActionResult Create([Bind(Include = "idProdotto,Nome,Foto,Foto2,Foto3,Prezzo,Consegna,Ingredienti")] Prodotti prodotti, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Prodotti.Add(prodotti);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/img"), fileName);
+                    file.SaveAs(path);
+                    prodotti.Foto = fileName;
+                }
+                else
+                {
+                    prodotti.Foto = "Default.jpg";
+                }
 
+                if (ModelState.IsValid)
+                {
+                    db.Prodotti.Add(prodotti);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Errore durante il salvataggio del file: " + ex.Message);
+            }
             return View(prodotti);
         }
 

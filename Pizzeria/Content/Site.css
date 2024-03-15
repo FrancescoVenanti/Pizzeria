@@ -16,7 +16,7 @@ textarea {
 }
 body {
     background: url('/Content/img/pizzabg.jpg') no-repeat center center fixed;
-    /*background: url('/Content/img/pizzaPattern.jpg') repeat center center;*/
+background-size: cover;
     font-family: 'Kalam', cursive;
 }
 
@@ -38,6 +38,7 @@ transition:all 0.1s;
 }
 .bgCard {
     background: url('/Content/img/bg-card.png') repeat center center;
+    
 }
 
 .bgSubtle{

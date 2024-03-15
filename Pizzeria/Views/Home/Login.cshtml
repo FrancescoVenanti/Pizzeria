@@ -36,6 +36,7 @@
                             @Html.ValidationMessageFor(model => model.Psw, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                   <p class="text-danger fw-3">@TempData["Error"]</p>
                     <div class="mt-2 fw-bold">
                         <p>Non hai un account? @Html.ActionLink("Registrati qui", "Register", "Home", new { }, new { @class = "text-decoration-none" })</p>
 

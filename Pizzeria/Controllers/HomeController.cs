@@ -23,6 +23,7 @@ namespace Pizzeria.Controllers
         {
             return View(); 
         }
+
         [HttpPost]
         public ActionResult Login(string email, string psw)
         {
@@ -36,6 +37,7 @@ namespace Pizzeria.Controllers
                 }
                 else
                 {
+                    TempData["Error"] = "Email o password errati";
                     return View();
                 }
             }
